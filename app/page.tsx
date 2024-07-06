@@ -1,113 +1,142 @@
-import Image from "next/image";
+"use client";
+import { FunctionComponent, useState, useEffect } from "react";
+import _ from "lodash";
+import { Responsive, WidthProvider } from "react-grid-layout";
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+interface Props {
+  domElements: any[];
+  className?: string;
+  rowHeight?: number;
+  onLayoutChange?: (layout: any, layouts: any) => void;
+  cols?: any;
+  breakpoints?: any;
+  containerPadding?: number[];
 }
+
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
+const DropDrag: FunctionComponent<Props> = (props) => {
+  const [layouts, setLayouts] = useState<{ [index: string]: any[] }>({
+    lg: _.map(_.range(0, 25), function (item, i) {
+      var y = Math.ceil(Math.random() * 4) + 1;
+      return {
+        x: (_.random(0, 5) * 2) % 12,
+        y: Math.floor(i / 6) * y,
+        w: 2,
+        h: y,
+        i: i.toString(),
+        static: Math.random() < 0.05,
+      };
+    }),
+  });
+  const [currentBreakpoint, setCurrentBreakpoint] = useState<string>("lg");
+  const [compactType, setCompactType] = useState<string | null>("vertical");
+  const [mounted, setMounted] = useState(false);
+  const [toolbox, setToolbox] = useState<{ [index: string]: any[] }>({
+    lg: [],
+  });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const onBreakpointChange = (breakpoint: any) => {
+    setCurrentBreakpoint(breakpoint);
+    setToolbox({
+      ...toolbox,
+      [breakpoint]: toolbox[breakpoint] || toolbox[currentBreakpoint] || [],
+    });
+  };
+
+  const onCompactTypeChange = () => {
+    let oldCompactType = "";
+
+    const compactType =
+      oldCompactType === "horizontal"
+        ? "vertical"
+        : oldCompactType === "vertical"
+        ? null
+        : "horizontal";
+    setCompactType(compactType);
+  };
+
+  const onLayoutChange = (layout: any, layouts: any) => {
+    setLayouts({ ...layouts });
+  };
+
+  const onDrop = (layout: any, layoutItem: any, _ev: any) => {
+    alert(
+      `Element parameters:\n${JSON.stringify(
+        layoutItem,
+        ["x", "y", "w", "h"],
+        2
+      )}`
+    );
+  };
+
+  const generateDOM = () => {
+    return _.map(layouts.lg, function (l, i) {
+      return (
+        <div key={i} className={`bg-gray-300 ${l.static ? "static" : ""}`}>
+          {l.static ? (
+            <span
+              className="text"
+              title="This item is static and cannot be removed or resized."
+            >
+              Static - {i}
+            </span>
+          ) : (
+            <span className="text">{i}</span>
+          )}
+        </div>
+      );
+    });
+  };
+
+  return (
+    <>
+      <div
+        className="droppable-element"
+        draggable
+        unselectable="on"
+        onDragStart={(e) => e.dataTransfer.setData("text/plain", "")}
+      >
+        Droppable Element (Drag me!)
+      </div>
+
+      <div className="mb-4">
+        <ResponsiveReactGridLayout
+          {...props}
+          className="bg-gray-200"
+          layouts={layouts}
+          measureBeforeMount={false}
+          useCSSTransforms={mounted}
+          compactType={compactType}
+          preventCollision={!compactType}
+          onLayoutChange={onLayoutChange}
+          onBreakpointChange={onBreakpointChange}
+          draggableHandle=".grid-item__title"
+          onDrop={onDrop}
+          isDroppable
+          isDraggable
+          isRearrangeable
+        >
+          {generateDOM()}
+        </ResponsiveReactGridLayout>
+      </div>
+    </>
+  );
+};
+
+export default DropDrag;
+
+DropDrag.defaultProps = {
+  className: "layout",
+  rowHeight: 30,
+  onLayoutChange: (layout: any, layouts: any) => {},
+  cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+  breakpoints: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
+  containerPadding: [0, 0],
+};
