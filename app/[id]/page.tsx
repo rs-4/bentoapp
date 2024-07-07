@@ -3,38 +3,41 @@
 import React, { useEffect, useState } from "react";
 import GridLayout from "../components/GridLayout";
 import NavTabs from "../components/NavTabs";
+import { LinkPreview } from "@dhaiwat10/react-link-preview";
+
 const Page = () => {
   const tabs = ["Home", "About", "RESSOURCESJJJJ"];
-  const socials = ["https://ui.shadcn.com/charts", "https://x.com/shadcn"];
+  // const socials = ["https://ui.shadcn.com/charts", "https://x.com/shadcn"];
 
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch("/api/scrape", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: "https://x.com/shadcn" }),
-      });
+  // const handleSubmit = async () => {
+  //   try {
+  //     const response = await fetch("/api/scrape", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ url: "https://x.com/shadcn" }),
+  //     });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-      } else {
-        console.error("Failed to fetch metadata");
-      }
-    } catch (error) {
-      console.error("Failed to fetch metadata", error);
-    }
-  };
-  useEffect(() => {
-    handleSubmit();
-  }, []);
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       console.log(data);
+  //     } else {
+  //       console.error("Failed to fetch metadata");
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to fetch metadata", error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   handleSubmit();
+  // }, []);
   return (
     <div>
       <NavTabs tabs={tabs} />
       <GridLayout />
-      <URLInfo url="https://ui.shadcn.com" />
+      <LinkPreview url="https://regisgrumberg.com" />
+      {/* <URLInfo url="https://ui.shadcn.com" /> */}
     </div>
   );
 };
