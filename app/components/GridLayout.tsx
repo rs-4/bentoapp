@@ -37,32 +37,32 @@ const GridLayout: React.FC = () => {
   const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
-    if (id && isLoading) {
-      fetch(`/api/layouts/get?id=${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.layouts && data.items) {
-            setLayouts({
-              lg: applyDefaults(data.layouts.lg),
-              md: applyDefaults(data.layouts.md),
-              xs: applyDefaults(data.layouts.xs),
-            });
-            setItems(data.items);
-          } else {
-            setLayouts({
-              lg: applyDefaults([]),
-              md: applyDefaults([]),
-              xs: applyDefaults([]),
-            });
-            setItems([]);
-          }
-          setIsLoading(false); // Set loading to false after data is fetched
-        })
-        .catch((error) => {
-          console.error("Error loading layouts:", error);
-          setIsLoading(false);
-        });
-    }
+    // if (id && isLoading) {
+    //   fetch(`/api/layouts/get?id=${id}`)
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       if (data && data.layouts && data.items) {
+    //         setLayouts({
+    //           lg: applyDefaults(data.layouts.lg),
+    //           md: applyDefaults(data.layouts.md),
+    //           xs: applyDefaults(data.layouts.xs),
+    //         });
+    //         setItems(data.items);
+    //       } else {
+    //         setLayouts({
+    //           lg: applyDefaults([]),
+    //           md: applyDefaults([]),
+    //           xs: applyDefaults([]),
+    //         });
+    //         setItems([]);
+    //       }
+    //       setIsLoading(false); // Set loading to false after data is fetched
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error loading layouts:", error);
+    //       setIsLoading(false);
+    //     });
+    // }
   }, [id, isLoading]);
 
   const handleLayoutChange = (currentLayout: Layout[], allLayouts: Layouts) => {
@@ -135,33 +135,6 @@ const GridLayout: React.FC = () => {
       <button onClick={addItem}>Ajouter un élément</button>
       {hasChanges && <button onClick={saveLayouts}>Sauvegarder</button>}
       <div style={{ position: "relative" }}>
-        {showGrid && (
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              display: "grid",
-              gridTemplateColumns: `repeat(${layouts.lg.length}, 1fr)`,
-              gridTemplateRows: `repeat(${Math.ceil(
-                layouts.lg.length / 3
-              )}, 30px)`,
-              pointerEvents: "none",
-              zIndex: 1,
-            }}
-          >
-            {layouts.lg.map((_, index) => (
-              <div
-                key={index}
-                style={{
-                  border: "1px solid rgba(0, 0, 0, 0.1)",
-                }}
-              />
-            ))}
-          </div>
-        )}
         <ResponsiveGridLayout
           className="layout"
           layouts={layouts}
